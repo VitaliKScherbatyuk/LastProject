@@ -1,19 +1,22 @@
 package domain;
 
+import java.time.LocalDate;
+
 public class PersonalData {
 
 	private Integer id;
 	private String sex; // стать
-	private Integer age; // вік
+	private LocalDate birthDate; // день народження
 	private String address; // адреса проживання
 	private String school; // закінчена школа
 	
 	public PersonalData() {
 	}
 
-	public PersonalData(String sex, Integer age, String address, String school) {
+	public PersonalData(String sex, LocalDate birthDate, String address, String school) {
+		super();
 		this.sex = sex;
-		this.age = age;
+		this.birthDate = birthDate;
 		this.address = address;
 		this.school = school;
 	}
@@ -34,12 +37,12 @@ public class PersonalData {
 		this.sex = sex;
 	}
 
-	public Integer getAge() {
-		return age;
+	public LocalDate getBirthDate() {
+		return birthDate;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getAddress() {
@@ -63,7 +66,7 @@ public class PersonalData {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((age == null) ? 0 : age.hashCode());
+		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((school == null) ? 0 : school.hashCode());
 		result = prime * result + ((sex == null) ? 0 : sex.hashCode());
@@ -84,10 +87,10 @@ public class PersonalData {
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
-		if (age == null) {
-			if (other.age != null)
+		if (birthDate == null) {
+			if (other.birthDate != null)
 				return false;
-		} else if (!age.equals(other.age))
+		} else if (!birthDate.equals(other.birthDate))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -109,8 +112,8 @@ public class PersonalData {
 
 	@Override
 	public String toString() {
-		return "PersonalData [id=" + id + ", sex=" + sex + ", age=" + age + ", address=" + address + ", school="
-				+ school + "]";
+		return "PersonalData [id=" + id + ", sex=" + sex + ", birthDate=" + birthDate + ", address=" + address
+				+ ", school=" + school + "]";
 	}
 
 }
