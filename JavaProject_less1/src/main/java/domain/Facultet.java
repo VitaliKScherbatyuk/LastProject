@@ -15,10 +15,10 @@ public class Facultet {
 
 	}
 
-	public Facultet(String facultetName, Map<Subjects, Double> subjectsBall) {
+	public Facultet(String facultetName, Map<Subjects, Double> subjectsScore) {
 		super();
 		this.facultetName = facultetName;
-		this.subjectsScore = subjectsBall;
+		this.subjectsScore = subjectsScore;
 	}
 
 	public Integer getId() {
@@ -53,12 +53,12 @@ public class Facultet {
 		this.subjects = subjects;
 	}
 
-	public Map<Subjects, Double> getSubjectsBall() {
+	public Map<Subjects, Double> getSubjectsScore() {
 		return subjectsScore;
 	}
 
-	public void setSubjectsBall(Map<Subjects, Double> subjectsBall) {
-		this.subjectsScore = subjectsBall;
+	public void setSubjectsScore(Map<Subjects, Double> subjectsScore) {
+		this.subjectsScore = subjectsScore;
 	}
 
 	@Override
@@ -112,7 +112,10 @@ public class Facultet {
 
 	@Override
 	public String toString() {
-		return "Facultet [id=" + id + ", facultetName=" + facultetName + "]";
+		return "Facultet [id=" + id + ", facultetName=" + facultetName + ", speciality=" + speciality + ", subjects="
+				+ subjects + ", subjectsScore=" + subjectsScore + "]";
 	}
+
+	
 	
 }
