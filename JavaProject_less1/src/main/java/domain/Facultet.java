@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Map;
 import java.util.Set;
 
 public class Facultet {
@@ -7,21 +8,17 @@ public class Facultet {
 	private Integer id;
 	private String facultetName; // назва факультету
 	private Set<Specialty> speciality; //перелік спеціальностей на факультеті
+	private Set<Subjects> subjects; // перлік предметів
+	private Map<Subjects,Double> subjectsScore; //прохідний бал по предмету
 	
 	public Facultet() {
 
 	}
 
-	public Facultet(String facultetName) {
-
+	public Facultet(String facultetName, Map<Subjects, Double> subjectsBall) {
+		super();
 		this.facultetName = facultetName;
-	}
-
-	public Facultet(Integer id, String facultetName, Set<Specialty> speciality) {
-
-		this.id = id;
-		this.facultetName = facultetName;
-		this.speciality = speciality;
+		this.subjectsScore = subjectsBall;
 	}
 
 	public Integer getId() {
@@ -48,6 +45,22 @@ public class Facultet {
 		this.speciality = speciality;
 	}
 
+	public Set<Subjects> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(Set<Subjects> subjects) {
+		this.subjects = subjects;
+	}
+
+	public Map<Subjects, Double> getSubjectsBall() {
+		return subjectsScore;
+	}
+
+	public void setSubjectsBall(Map<Subjects, Double> subjectsBall) {
+		this.subjectsScore = subjectsBall;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -55,6 +68,8 @@ public class Facultet {
 		result = prime * result + ((facultetName == null) ? 0 : facultetName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((speciality == null) ? 0 : speciality.hashCode());
+		result = prime * result + ((subjects == null) ? 0 : subjects.hashCode());
+		result = prime * result + ((subjectsScore == null) ? 0 : subjectsScore.hashCode());
 		return result;
 	}
 
@@ -82,14 +97,22 @@ public class Facultet {
 				return false;
 		} else if (!speciality.equals(other.speciality))
 			return false;
+		if (subjects == null) {
+			if (other.subjects != null)
+				return false;
+		} else if (!subjects.equals(other.subjects))
+			return false;
+		if (subjectsScore == null) {
+			if (other.subjectsScore != null)
+				return false;
+		} else if (!subjectsScore.equals(other.subjectsScore))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Facultet [id=" + id + ", facultetName=" + facultetName + ", speciality=" + speciality + "]";
+		return "Facultet [id=" + id + ", facultetName=" + facultetName + "]";
 	}
-	
-	
 	
 }

@@ -1,4 +1,4 @@
-package domain;
+	package domain;
 
 public class User {
 
@@ -8,26 +8,20 @@ public class User {
 	private String lastName;
 	private UserRole userRole;
 	private String password;
+	private PersonalData personalData;
 	
 	public User() {
 
 	}
 
-	public User(String email, String firstName, String lastName, UserRole userRole, String password) {
+	public User(String email, String firstName, String lastName, UserRole userRole, String password,
+			PersonalData personalData) {
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userRole = userRole;
 		this.password = password;
-	}
-
-	public User(Integer id, String email, String firstName, String lastName, UserRole userRole, String password) {
-		this.id = id;
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.userRole = userRole;
-		this.password = password;
+		this.personalData = personalData;
 	}
 
 	public Integer getId() {
@@ -78,6 +72,14 @@ public class User {
 		this.password = password;
 	}
 
+	public PersonalData getPersonalData() {
+		return personalData;
+	}
+
+	public void setPersonalData(PersonalData personalData) {
+		this.personalData = personalData;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -87,6 +89,7 @@ public class User {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((personalData == null) ? 0 : personalData.hashCode());
 		result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
 		return result;
 	}
@@ -125,6 +128,11 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (personalData == null) {
+			if (other.personalData != null)
+				return false;
+		} else if (!personalData.equals(other.personalData))
+			return false;
 		if (userRole != other.userRole)
 			return false;
 		return true;
@@ -133,7 +141,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", userRole=" + userRole + ", password=" + password + "]";
+				+ ", userRole=" + userRole + ", password=" + password + ", personalData=" + personalData + "]";
 	}
-	
+
 }
