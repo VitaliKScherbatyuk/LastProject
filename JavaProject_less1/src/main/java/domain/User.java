@@ -1,27 +1,61 @@
 	package domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@Column
 	private String email;
+	@Column
 	private String firstName;
+	@Column
 	private String lastName;
-	private UserRole userRole;
+	@Column
 	private String password;
-	private PersonalData personalData;
-	
-	public User() {
+	@Column
+	private String passwordConfirm;
+	@Enumerated(EnumType.STRING)
+	private UserRole role;
 
+	public User() {
 	}
 
-	public User(String email, String firstName, String lastName, UserRole userRole, String password,
-			PersonalData personalData) {
+	public User(User user) {
+		this.id = user.id;
+		this.email = user.email;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
+		this.password = user.password;
+		this.role = user.role;
+	}
+
+	public User(String email, String firstName, String lastName, UserRole role, String password) {
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.userRole = userRole;
 		this.password = password;
-		this.personalData = personalData;
+		this.role = role;
+	}
+
+	public User(Integer id, String email, String firstName, String lastName, UserRole role, String password) {
+		this.id = id;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.role = role;
 	}
 
 	public Integer getId() {
@@ -56,14 +90,6 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public UserRole getUserRole() {
-		return userRole;
-	}
-
-	public void setUserRole(UserRole userRole) {
-		this.userRole = userRole;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -72,12 +98,24 @@ public class User {
 		this.password = password;
 	}
 
-	public PersonalData getPersonalData() {
-		return personalData;
+	public UserRole getRole() {
+		return role;
 	}
 
-	public void setPersonalData(PersonalData personalData) {
-		this.personalData = personalData;
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+
+	public String getUserName() {
+		return email;
+	}
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	@Override
@@ -89,8 +127,7 @@ public class User {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((personalData == null) ? 0 : personalData.hashCode());
-		result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
 
@@ -128,12 +165,7 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (personalData == null) {
-			if (other.personalData != null)
-				return false;
-		} else if (!personalData.equals(other.personalData))
-			return false;
-		if (userRole != other.userRole)
+		if (role != other.role)
 			return false;
 		return true;
 	}
@@ -141,7 +173,6 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", userRole=" + userRole + ", password=" + password + ", personalData=" + personalData + "]";
+				+ ", password=" + password + ", role=" + role + "]";
 	}
-
 }

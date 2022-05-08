@@ -2,14 +2,44 @@ package domain;
 
 import java.util.Map;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.security.auth.Subject;
 
+@Entity
+@Table(name="selected")
 public class Selected {
 // корзина
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@ManyToOne
+	@JoinColumn(name = "personalData_id", nullable = false)
 	private PersonalData personalData;
+	
+	@ManyToOne
+	@JoinColumn(name = "speciality_id", nullable = false)
 	private Specialty specialty;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "zno_score")
+	@MapKeyColumn(name = "subject_id")
 	private Map<Subject, Integer> znoScore;
+	
+	@OneToOne(mappedBy = "selected", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private ListOfEntrants listOfEntrants;
 	
 	public Selected() {

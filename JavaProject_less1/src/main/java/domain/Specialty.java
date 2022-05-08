@@ -2,11 +2,30 @@ package domain;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "specialty")
 public class Specialty {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "specialty_id")
 	private Integer id;
+	@Column
 	private String specialityName; // назва спеціальності на фікультеті
+	@Column
 	private Integer numberOfEntrants; // кількість абітурієнтів на факультеті
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "specialty")
+	@Column(nullable = false)
 	private Set<Subjects> subjects; // предмети у фільтрі
 	
 	

@@ -2,5 +2,5 @@ package domain;
 
 public enum UserRole {
 
-	ADMINISTRATOR, USER;
+	ROLE_ADMIN, ROLE_USER;
 }

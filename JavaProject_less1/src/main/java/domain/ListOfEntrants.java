@@ -1,9 +1,20 @@
 package domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "listOfEntrants")
 public class ListOfEntrants {
 
+	@Id
+	@Column
 	private Integer id;
+	@Column
 	private Double totalScore; // загальний бал
+	@Column
 	private boolean counting; // зарахування
 	
 	public ListOfEntrants() {

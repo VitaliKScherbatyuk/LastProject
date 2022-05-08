@@ -2,12 +2,25 @@ package domain;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "personalData")
 public class PersonalData {
 
+	@Id
+	@Column
 	private Integer id;
+	@Column
 	private String sex; // стать
+	@Column
 	private LocalDate birthDate; // день народження
+	@Column
 	private String address; // адреса проживання
+	@Column
 	private String school; // закінчена школа
 	
 	public PersonalData() {

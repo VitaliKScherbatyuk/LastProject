@@ -3,12 +3,33 @@ package domain;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "facultet")
 public class Facultet {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@Column
 	private String facultetName; // назва факультету
+	@Column
 	private Set<Specialty> speciality; //перелік спеціальностей на факультеті
+	@Column
 	private Set<Subjects> subjects; // перлік предметів
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "subjectsScore")
+	@MapKeyColumn(name = "subject_id")
 	private Map<Subjects,Double> subjectsScore; //прохідний бал по предмету
 	
 	public Facultet() {
